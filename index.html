@@ -135,8 +135,8 @@
         }
 
         .tab-content {
-            padding: 20px;
-            min-height: 400px;
+            padding: 10px;
+            min-height: 200px;
         }
 
         .tab-pane {
@@ -632,29 +632,139 @@
             .container {
                 margin: 0;
                 border-radius: 0;
+                padding: 0;
+            }
+
+            .header {
+                padding: 15px 10px;
+            }
+
+            .header h1 {
+                font-size: 1.6em;
+                margin-bottom: 3px;
+            }
+
+            .header p {
+                font-size: 0.9em;
+            }
+
+            .nav-tabs {
+                font-size: 11px;
+                padding: 0 5px;
+                background: #f8f9fa;
+                margin-bottom: 0;
+                border-bottom: 1px solid #dee2e6;
+            }
+
+            .nav-tab {
+                padding: 8px 10px;
+                font-size: 11px;
+                margin-bottom: 0;
+            }
+
+            .tab-content {
+                padding: 8px;
+                min-height: 100px;
+                margin-top: 0;
+            }
+
+            .purpose-section, .character-card {
+                padding: 8px;
+                margin-bottom: 8px;
+                border-radius: 6px;
+            }
+
+            .character-grid {
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+
+            .section-actions {
+                top: 4px;
+                right: 4px;
+            }
+
+            .form-group {
+                margin-bottom: 8px;
+            }
+
+            .form-group label {
+                margin-bottom: 2px;
+                font-size: 11px;
+            }
+
+            .form-control {
+                padding: 6px 8px;
+                font-size: 12px;
             }
 
             .auth-status {
                 position: static;
                 justify-content: center;
-                margin-top: 15px;
+                margin-top: 8px;
             }
 
             .episode-list {
                 grid-template-columns: 1fr;
             }
 
-            .nav-tabs {
-                font-size: 12px;
-            }
-
-            .nav-tab {
-                padding: 12px 15px;
-            }
-
             .auth-buttons {
                 flex-direction: column;
                 align-items: center;
+            }
+
+            .tts-controls {
+                flex-wrap: wrap;
+                gap: 5px;
+                padding: 6px;
+                margin-top: 5px;
+            }
+
+            .btn-tts {
+                padding: 4px 8px;
+                font-size: 10px;
+            }
+
+            .btn {
+                padding: 8px 15px;
+                margin-bottom: 6px;
+                font-size: 12px;
+            }
+
+            .speed-control, .voice-control {
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .speed-control label, .voice-control label {
+                font-size: 9px;
+            }
+
+            .section-header {
+                margin-bottom: 10px;
+            }
+
+            .section-header h3 {
+                font-size: 1.1em;
+                margin: 0;
+            }
+
+            .purpose-section .form-group {
+                margin-bottom: 8px;
+            }
+
+            .purpose-section .form-group label {
+                font-size: 10px;
+                margin-bottom: 2px;
+            }
+
+            .purpose-section .form-control {
+                padding: 5px 7px;
+                font-size: 11px;
+            }
+
+            .purpose-section textarea.form-control {
+                min-height: 50px;
             }
         }
     </style>
