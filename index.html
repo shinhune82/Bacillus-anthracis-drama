@@ -451,6 +451,64 @@
             margin-top: 1rem;
         }
 
+        .tts-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .btn-tts {
+            padding: 8px 12px;
+            font-size: 12px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tts-status {
+            font-size: 12px;
+            color: #6c757d;
+            margin-left: auto;
+        }
+
+        .speed-control {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .speed-control label {
+            font-size: 11px;
+            color: #6c757d;
+            margin: 0;
+        }
+
+        .speed-control select {
+            padding: 2px 5px;
+            font-size: 11px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .voice-control {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .voice-control select {
+            padding: 2px 5px;
+            font-size: 11px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
         @media (max-width: 768px) {
             .container {
                 margin: 0;
@@ -531,6 +589,36 @@
                         <label for="loglineText">📝 로그라인</label>
                         <textarea class="form-control" id="loglineText" placeholder="드라마의 핵심 내용을 한 문장으로 요약해주세요...">2015년 메르스 치료제 승인 거부로 아들을 잃고 실형을 선고받은 전 연구자가, 출소 후 코로나19 대유행 틈에 탄저균으로 관련자들을 차례로 살해하다 질병관리청장에게 "시스템을 끝까지 지킬 수 있는가?"라는 생명을 건 철학적 시험을 가하면서, 일반인의 감기 대처법을 따라가다 예상치 못한 죽음을 맞는 과정을 통해 의료진 불신과 자가진단의 위험성을 경고하는 의료 스릴러</textarea>
                     </div>
+                    
+                    <div class="tts-controls">
+                        <button class="btn btn-success btn-tts" onclick="speakText('loglineText')">
+                            🔊 읽어주기
+                        </button>
+                        <button class="btn btn-warning btn-tts" onclick="pauseResumeText()">
+                            ⏸️ 일시정지
+                        </button>
+                        <button class="btn btn-secondary btn-tts" onclick="stopText()">
+                            ⏹️ 정지
+                        </button>
+                        
+                        <div class="speed-control">
+                            <label>속도:</label>
+                            <select id="speechRate" onchange="updateSpeechSettings()">
+                                <option value="0.8">느림</option>
+                                <option value="1.0" selected>보통</option>
+                                <option value="1.2">빠름</option>
+                                <option value="1.5">매우 빠름</option>
+                            </select>
+                        </div>
+                        
+                        <div class="voice-control">
+                            <label>음성:</label>
+                            <select id="voiceSelect" onchange="updateSpeechSettings()"></select>
+                        </div>
+                        
+                        <div class="tts-status" id="ttsStatus">준비됨</div>
+                    </div>
+                    
                     <button class="btn btn-primary" onclick="saveData('logline')">💾 저장</button>
                 </div>
 
@@ -546,6 +634,20 @@
 
 특히 의료 영역에서의 전문성과 개인 판단의 경계선을 탐구하며, 팬데믹 이후 더욱 중요해진 '의료진에 대한 신뢰'와 '자가 진단의 한계'라는 현실적 문제를 다룬다. 감기라는 가장 일상적인 질병을 통해 "전문가의 조언을 무시할 때 어떤 결과가 초래될 수 있는가"라는 메시지를 전달하고자 한다.</textarea>
                     </div>
+                    
+                    <div class="tts-controls">
+                        <button class="btn btn-success btn-tts" onclick="speakText('themeText')">
+                            🔊 읽어주기
+                        </button>
+                        <button class="btn btn-warning btn-tts" onclick="pauseResumeText()">
+                            ⏸️ 일시정지
+                        </button>
+                        <button class="btn btn-secondary btn-tts" onclick="stopText()">
+                            ⏹️ 정지
+                        </button>
+                        <div class="tts-status" id="ttsStatusTheme">준비됨</div>
+                    </div>
+                    
                     <button class="btn btn-primary" onclick="saveData('theme')">💾 저장</button>
                 </div>
 
@@ -595,6 +697,20 @@ CCTV 분석과 내부 조사를 통해 범인이 평범해 보였던 청소직�
 ### 5막: 성찰과 변화 (9-10화)
 사건은 사회 전체에 큰 파장을 일으킨다...</textarea>
                     </div>
+                    
+                    <div class="tts-controls">
+                        <button class="btn btn-success btn-tts" onclick="speakText('synopsisText')">
+                            🔊 읽어주기
+                        </button>
+                        <button class="btn btn-warning btn-tts" onclick="pauseResumeText()">
+                            ⏸️ 일시정지
+                        </button>
+                        <button class="btn btn-secondary btn-tts" onclick="stopText()">
+                            ⏹️ 정지
+                        </button>
+                        <div class="tts-status" id="ttsStatusSynopsis">준비됨</div>
+                    </div>
+                    
                     <button class="btn btn-primary" onclick="saveData('synopsis')">💾 저장</button>
                 </div>
 
@@ -1468,6 +1584,147 @@ CCTV 분석과 내부 조사를 통해 범인이 평범해 보였던 청소직�
         window.addCharacter = addCharacter;
         window.removeCharacter = removeCharacter;
         window.checkConsistency = checkConsistency;
+
+        // TTS (텍스트 음성 변환) 기능
+        let currentSpeech = null;
+        let isPaused = false;
+        let availableVoices = [];
+
+        // 음성 목록 로드
+        function loadVoices() {
+            availableVoices = speechSynthesis.getVoices();
+            const voiceSelect = document.getElementById('voiceSelect');
+            
+            if (voiceSelect && availableVoices.length > 0) {
+                voiceSelect.innerHTML = '';
+                
+                // 한국어 음성 우선 선택
+                const koreanVoices = availableVoices.filter(voice => voice.lang.includes('ko'));
+                const otherVoices = availableVoices.filter(voice => !voice.lang.includes('ko'));
+                
+                [...koreanVoices, ...otherVoices].forEach((voice, index) => {
+                    const option = document.createElement('option');
+                    option.value = index;
+                    option.textContent = `${voice.name} (${voice.lang})`;
+                    if (voice.lang.includes('ko') && !voiceSelect.value) {
+                        option.selected = true;
+                    }
+                    voiceSelect.appendChild(option);
+                });
+            }
+        }
+
+        // 브라우저에서 음성 목록이 로드되면 실행
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = loadVoices;
+        }
+        setTimeout(loadVoices, 100); // 초기 로드
+
+        // 텍스트 읽기
+        function speakText(elementId) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+            
+            let text = element.value.trim();
+            if (!text) {
+                showAlert('읽을 내용이 없습니다.', 'warning');
+                return;
+            }
+            
+            // 마크다운 형식 정리
+            text = text.replace(/###/g, '').replace(/\*\*/g, '').replace(/\*/g, '');
+            text = text.replace(/\n+/g, ' '); // 줄바꿈을 공백으로 변경
+            
+            // 기존 음성 정지
+            if (currentSpeech) {
+                speechSynthesis.cancel();
+            }
+            
+            currentSpeech = new SpeechSynthesisUtterance(text);
+            
+            // 음성 설정
+            const voiceSelect = document.getElementById('voiceSelect');
+            const rateSelect = document.getElementById('speechRate');
+            
+            if (voiceSelect && voiceSelect.value) {
+                currentSpeech.voice = availableVoices[parseInt(voiceSelect.value)];
+            }
+            
+            if (rateSelect) {
+                currentSpeech.rate = parseFloat(rateSelect.value);
+            }
+            
+            currentSpeech.pitch = 1;
+            currentSpeech.volume = 1;
+            
+            // 이벤트 핸들러
+            currentSpeech.onstart = function() {
+                updateTTSStatus('읽는 중...');
+                isPaused = false;
+            };
+            
+            currentSpeech.onend = function() {
+                updateTTSStatus('완료');
+                currentSpeech = null;
+                isPaused = false;
+            };
+            
+            currentSpeech.onerror = function(event) {
+                updateTTSStatus('오류 발생');
+                console.error('TTS 오류:', event);
+            };
+            
+            // 음성 재생 시작
+            speechSynthesis.speak(currentSpeech);
+            updateTTSStatus('읽는 중...');
+        }
+
+        // 일시정지/재개
+        function pauseResumeText() {
+            if (currentSpeech) {
+                if (isPaused) {
+                    speechSynthesis.resume();
+                    updateTTSStatus('읽는 중...');
+                    isPaused = false;
+                } else {
+                    speechSynthesis.pause();
+                    updateTTSStatus('일시정지됨');
+                    isPaused = true;
+                }
+            }
+        }
+
+        // 정지
+        function stopText() {
+            if (currentSpeech) {
+                speechSynthesis.cancel();
+                currentSpeech = null;
+                isPaused = false;
+                updateTTSStatus('정지됨');
+            }
+        }
+
+        // TTS 상태 업데이트
+        function updateTTSStatus(status) {
+            const statusElements = document.querySelectorAll('.tts-status');
+            statusElements.forEach(element => {
+                element.textContent = status;
+            });
+        }
+
+        // 음성 설정 업데이트
+        function updateSpeechSettings() {
+            // 현재 재생 중이면 설정 변경 알림
+            if (currentSpeech && speechSynthesis.speaking) {
+                showAlert('설정이 다음 재생부터 적용됩니다.', 'info');
+            }
+        }
+
+        // 전역 함수로 등록
+        window.speakText = speakText;
+        window.pauseResumeText = pauseResumeText;
+        window.stopText = stopText;
+        window.updateSpeechSettings = updateSpeechSettings;
     </script>
 </body>
 </html>
